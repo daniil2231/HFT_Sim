@@ -11,6 +11,6 @@ public:
 
 	std::priority_queue<Order> getAllOrders();
 
-	void placeLimitOrder(std::string d, std::string t, float p, float s);
+	void placeLimitOrder(std::string d, std::string t, double p, double s);
 };
 

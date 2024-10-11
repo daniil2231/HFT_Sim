@@ -1,6 +1,7 @@
 #include "Order.h"
+#include <iostream>
 
-Order::Order(std::string d, std::string t, float p, float s) {
+Order::Order(std::string d, std::string t, double p, double s) {
 	direction = d;
 	type = t;
 	price = p;
@@ -8,5 +9,19 @@ Order::Order(std::string d, std::string t, float p, float s) {
 }
 
 bool Order::operator<(const Order& other) const {
-	return this->price < other.price;
+	if (direction == "buy" && other.direction == "buy") {
+		return price < other.price;
+	}
+	else if (direction == "sell" && other.direction == "sell") {
+		return price > other.price;
+	}
+	else {
+		return direction == "sell";
+	}
+}
+
+std::ostream& operator<<(std::ostream& os, const Order& order)
+{
+	os << "Price: " << order.price << ", Direction: " << order.direction << ", Size: " << order.size;
+	return os;
 }
