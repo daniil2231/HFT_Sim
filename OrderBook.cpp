@@ -11,7 +11,7 @@ std::priority_queue<Order> OrderBook::getAllOrders() {
 	return limit_orders;
 }
 
-void OrderBook::placeLimitOrder(std::string d, std::string t, double p, double s) {
-	Order new_order = Order(d, t, p, s);
+void OrderBook::placeLimitOrder(std::string d, bool f, double p, double s) {
+	Order new_order = Order(d, f, p, s);
 	limit_orders.push(new_order);
 }
