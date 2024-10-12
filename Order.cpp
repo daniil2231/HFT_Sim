@@ -8,6 +8,22 @@ Order::Order(std::string d, std::string t, double p, double s) {
 	size = s;
 }
 
+std::string Order::getDirection() {
+	return this->direction;
+}
+
+std::string Order::getType() {
+	return this->type;
+}
+
+double Order::getPrice() {
+	return this->price;
+}
+
+double Order::getSize() {
+	return this->size;
+}
+
 bool Order::operator<(const Order& other) const {
 	if (direction == "buy" && other.direction == "buy") {
 		return price < other.price;

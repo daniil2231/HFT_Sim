@@ -5,9 +5,11 @@
 class OrderBook
 {
 public:
-	std::priority_queue<Order> resting_orders;
+	std::priority_queue<Order> limit_orders;
 
 	OrderBook(std::priority_queue<Order> o);
+
+	OrderBook();
 
 	std::priority_queue<Order> getAllOrders();
 
