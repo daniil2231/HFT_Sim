@@ -8,23 +8,36 @@ using OrderQueue = std::priority_queue<Order>;
 int main()
 {
     const auto initial_orders = {
-        Order("buy", false, 1000.0, 1.1),
-        Order("buy", false, 1001.0, 1.5),
-        Order("sell", false, 1003.0, 0.04),
-        Order("sell", false, 1001.0, 0.05)
+        Order("buy", false, 998.0, 1.1),
+        Order("buy", false, 999.0, 1.5),
+        Order("sell", false, 1001.0, 0.05),
+        Order("sell", false, 1002.0, 0.04)
     };
 
-    OrderBook order_book;
+    OrderBook ob_containing_buys;
+    OrderBook ob_containing_sells;
 
     for (Order o : initial_orders) {
-        order_book.placeLimitOrder(o.getDirection(), false, o.getPrice(), o.getSize());
+        if (o.getDirection() == "buy") {
+            ob_containing_buys.placeLimitOrder("buy", false, o.getPrice(), o.getSize());
+        }
+        else {
+            ob_containing_sells.placeLimitOrder("sell", false, o.getPrice(), o.getSize());
+        }
     }
 
-    OrderQueue order_book_orders = order_book.getAllOrders();
+    OrderQueue ob_buy_orders = ob_containing_buys.getAllOrders();
+    OrderQueue ob_sell_orders = ob_containing_sells.getAllOrders();
 
-    while (!order_book_orders.empty()) {
-        Order topOrder = order_book_orders.top();
+    while (!ob_buy_orders.empty()) {
+        Order topOrder = ob_buy_orders.top();
         std::cout << topOrder << std::endl;
-        order_book_orders.pop();
+        ob_buy_orders.pop();
+    }
+    std::cout << std::endl;
+    while (!ob_sell_orders.empty()) {
+        Order topOrder = ob_sell_orders.top();
+        std::cout << topOrder << std::endl;
+        ob_sell_orders.pop();
     }
 }
