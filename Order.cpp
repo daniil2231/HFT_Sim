@@ -1,19 +1,14 @@
 #include "Order.h"
 #include <iostream>
 
-Order::Order(std::string d, bool f, double p, double s) {
+Order::Order(std::string d, double p, double s) {
 	direction = d;
-	filled = f;
 	price = p;
 	size = s;
 }
 
 std::string Order::getDirection() {
 	return this->direction;
-}
-
-bool Order::getFilled() {
-	return this->filled;
 }
 
 double Order::getPrice() {

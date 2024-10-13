@@ -4,16 +4,13 @@
 class Order
 {
 	std::string direction;
-	bool filled;
 	double price;
 	double size;
 
 public:
-	Order(std::string d, bool f, double p, double s);
+	Order(std::string d, double p, double s);
 
 	std::string getDirection();
-
-	bool getFilled();
 
 	double getPrice();
 
