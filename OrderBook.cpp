@@ -1,5 +1,6 @@
 #include "OrderBook.h"
 #include <queue>
+#include <iostream>
 
 OrderBook::OrderBook() {}
 
@@ -24,7 +25,11 @@ void OrderBook::placeLimitOrder(std::string d, double p, double s) {
 void OrderBook::placeMarketOrder(std::string d, double p, double s) {
 	Order new_order = Order(d, p, s);
 	if (d == "buy" && s) {
-		sell_orders.pop();
+		Order top = sell_orders.top();
+		double top_size = top.getSize();
+		if (top_size == s) {
+			sell_orders.pop();
+		}
 	}
 	else {
 		buy_orders.pop();

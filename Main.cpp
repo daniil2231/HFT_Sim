@@ -10,7 +10,7 @@ int main()
     const auto initial_orders = {
         Order("buy", 998.0, 1.1),
         Order("buy", 999.0, 1.5),
-        Order("sell", 1001.0, 0.05),
+        Order("sell", 1001.0, 0.06),
         Order("sell", 1002.0, 0.04)
     };
 
@@ -43,6 +43,6 @@ int main()
     double current_market_price = 1000.0;
 
     // Placing a market buy order and checking if the sell order closest to the market one's price is no longer a limit in the order book.
-    order_book.placeMarketOrder("buy", current_market_price, 0.05);
+    order_book.placeMarketOrder("buy", current_market_price, 0.06);
     std::cout << order_book.getAllSellOrders().top();
 }
