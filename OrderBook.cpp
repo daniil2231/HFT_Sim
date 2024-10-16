@@ -38,6 +38,11 @@ void OrderBook::placeMarketOrder(std::string d, double p, double s) {
 			sell_orders.pop();
 			sell_orders.push(partially_filled_limit_order);
 		}
+		else {
+			double partially_filled_market_order_size = s - top_order_size;
+			sell_orders.pop();
+			// TODO: Loop which keeps getting the next order and subtracting from the market order's size until the market order's size is 0.
+		}
 	}
 	else {
 		buy_orders.pop();
