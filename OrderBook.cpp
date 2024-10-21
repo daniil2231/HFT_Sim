@@ -33,7 +33,8 @@ void OrderBook::placeMarketOrder(std::string d, double p, double s) {
 			sell_orders.pop();
 		}
 		else if (top_order_size > s) {
-			// Need to reinsert the limit order in case the market order's size is not enough to fully fill it - priority_queue does not support modifying elements directly.
+			// Need to reinsert the limit order in case the market order's size is not enough to fully fill it -
+			// priority_queue does not support modifying elements directly.
 			Order partially_filled_limit_order = Order("buy", top_order.getPrice(), top_order_size - s);
 			sell_orders.pop();
 			sell_orders.push(partially_filled_limit_order);
@@ -41,7 +42,6 @@ void OrderBook::placeMarketOrder(std::string d, double p, double s) {
 		else {
 			double partially_filled_market_order_size = s - top_order_size;
 			sell_orders.pop();
-			// TODO: Loop which keeps getting the next order and subtracting from the market order's size until the market order's size is 0.
 		}
 	}
 	else {

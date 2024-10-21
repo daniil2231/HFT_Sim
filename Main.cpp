@@ -42,7 +42,8 @@ int main()
     // Dummy cmp to test placing market orders:
     double current_market_price = 1000.0;
 
-    // Placing a market buy order and checking if the sell order closest to the market one's price is no longer a limit in the order book.
+    // Placing a market buy order and checking if the sell order closest to
+    // the market one's price is no longer a limit in the order book.
     order_book.placeMarketOrder("buy", current_market_price, 0.04);
     std::cout << order_book.getAllSellOrders().top();
 }
