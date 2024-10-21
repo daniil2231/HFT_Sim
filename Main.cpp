@@ -44,6 +44,17 @@ int main()
 
     // Placing a market buy order and checking if the sell order closest to
     // the market one's price is no longer a limit in the order book.
-    order_book.placeMarketOrder("buy", current_market_price, 0.04);
-    std::cout << order_book.getAllSellOrders().top();
+    order_book.placeMarketOrder("buy", current_market_price, 0.1);
+    try {
+        if (order_book.getAllSellOrders().empty()) {
+            throw std::runtime_error("There are no sell orders in the orderbook.");
+        }
+        std::cout << order_book.getAllSellOrders().top();
+    }
+    // Note to self:
+    // runtime_error& > runtime_error because with '&' it does not make a copy of the exception object,
+    // avoiding object slicing and performance overhead from copying the object.
+    catch (const std::runtime_error& e) {
+        std::cout << e.what() << std::endl;
+    }
 }
